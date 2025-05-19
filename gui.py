@@ -29,6 +29,16 @@ def open_notes():
     app.title("Secure Notes")
 
     text_area = tk.Text(app, width=60, height=20)
-    text_area.pack()
+    text_area.pack(pady=10)
+
+    def save_note():
+        content = text_area.get("1.0", tk.END)
+        with open("my_note.txt", "w") as f:
+            f.write(content)
+        messagebox.showinfo("Saved", "Note saved successfully!")
+
+    save_btn = tk.Button(app, text="Save Note", command=save_note)
+    save_btn.pack(pady=10)
 
     app.mainloop()
+
